@@ -46,7 +46,7 @@ namespace Fast
 	Fast::Bool		mShouldDraw;
 	NSOpenGLContext	*mGLContext;
 }
-- (id) initWithFastWindow:(Fast::Window*)chaosWindow
+- (id) initWithFastWindow:(Fast::Window*)fastWindow
 	contentRect:(NSRect)frame
 	styleMask:(NSUInteger)styleMask
 	backing:(NSUInteger)backing

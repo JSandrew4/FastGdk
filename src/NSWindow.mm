@@ -67,7 +67,7 @@ namespace Fast
 
 @implementation FastNSWindow
 
-- (id) initWithFastWindow:(Fast::Window*)chaosWindow
+- (id) initWithFastWindow:(Fast::Window*)fastWindow
 	contentRect:(NSRect)frame
 	styleMask:(NSUInteger)styleMask
 	backing:(NSUInteger)backing
@@ -78,7 +78,7 @@ namespace Fast
 		backing:backing
 		defer:defer])
 	{
-		mFastWindow = chaosWindow;
+		mFastWindow = fastWindow;
 		[self setAcceptsMouseMovedEvents:YES];
 		//[self setAutodisplay: NO];
 		mShouldDraw = true;

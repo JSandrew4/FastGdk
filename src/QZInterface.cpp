@@ -92,11 +92,11 @@ namespace Fast
 		return (UInt)depth;
 	}
 
-	UInt QZGetDisplayID(UInt chaosScreenID) {
+	UInt QZGetDisplayID(UInt fastScreenID) {
 		CGDirectDisplayID displays[kFastMaxDisplays];
 		UInt numDisplays;
 		CGGetActiveDisplayList(kFastMaxDisplays, displays, &numDisplays);
-		return displays[chaosScreenID];
+		return displays[fastScreenID];
 	}
 
 	void QZGetVideoModes(UInt displayID, Array<VideoMode> *modes) {

@@ -39,7 +39,7 @@ namespace Fast
 							const Rectangle &contentRect);
 	extern void			X11DestroyWindow(CXDisplay *display, CXWindow window);
 	extern void			X11HandleEvents(CXDisplay *display, CXWindow window,
-							Window *chaosWindow, Int xiOpCode);
+							Window *fastWindow, Int xiOpCode);
 	extern Int			X11InitializeInput(CXDisplay *display);
 	extern Int			X11DefaultScreen(CXDisplay *display);
 	extern CGLXFBConfig*X11ChooseFBConfigs(CXDisplay *display,

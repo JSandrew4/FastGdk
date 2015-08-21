@@ -40,7 +40,7 @@ namespace Fast
 	extern CNSAutoreleasePool*	NSCreateAutoreleasePool();
 	extern void					NSDestroyAutoreleasePool(
 									CNSAutoreleasePool *arp);
-	extern CNSWindow*			NSCreateWindow(Window *chaosWindow);
+	extern CNSWindow*			NSCreateWindow(Window *fastWindow);
 	extern CNSOpenGLContext*	NSCreateOpenGLContext(CNSWindow *window,
 									Int depthBits, Int stencilBits);
 	extern CNSOpenGLContext*	NSCreateSharedOpenGLContext(

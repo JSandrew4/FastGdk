@@ -70,9 +70,9 @@ namespace Fast
 		[(NSAutoreleasePool*)arp release];
 	}
 
-	CNSWindow* NSCreateWindow(Window *chaosWindow) {
+	CNSWindow* NSCreateWindow(Window *fastWindow) {
 		FastNSWindow *window = [[FastNSWindow alloc]
-			initWithFastWindow:chaosWindow
+			initWithFastWindow:fastWindow
 			contentRect:NSMakeRect(0, 0, 640, 480)
 			styleMask:(NSUInteger)NSGetStyleMask(kWindowStyleNormal)
 			backing:NSBackingStoreBuffered

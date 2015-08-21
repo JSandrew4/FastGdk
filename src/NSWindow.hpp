@@ -74,7 +74,7 @@ namespace Fast
 	CFMutableDictionaryRef	mHidCriterionDict;
 }
 // (Con/De)structors
-- (id) initWithFastWindow:(Fast::Window*)chaosWindow
+- (id) initWithFastWindow:(Fast::Window*)fastWindow
 	contentRect:(NSRect)frame
 	styleMask:(NSUInteger)styleMask
 	backing:(NSUInteger)backing

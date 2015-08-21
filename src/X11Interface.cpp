@@ -98,7 +98,7 @@ namespace Fast
 	}
 
 	void X11HandleEvents(CXDisplay *display, CXWindow window,
-		Window *chaosWindow, Int xiOpCode, Int xrrEventBase)
+		Window *fastWindow, Int xiOpCode, Int xrrEventBase)
 	{
 		static KeyTranslator keyTranslator;
 		XEvent xEvent;
@@ -110,8 +110,8 @@ namespace Fast
 		{
 			if (RRScreenChangeNotify == (xEvent.type - xrrEventBase)) {
 				XRRUpdateConfiguration(&xEvent);
-				chaosWindow->GetDisplay()->RefreshMonitors();
-				chaosWindow->RefreshGeometry();
+				fastWindow->GetDisplay()->RefreshMonitors();
+				fastWindow->RefreshGeometry();
 				continue;
 			}
 			switch (xEvent.type)
@@ -121,7 +121,7 @@ namespace Fast
 					MouseMoveEvent mm;
 					mm.mPosition.mX = xEvent.xmotion.x;
 					mm.mPosition.mY = xEvent.xmotion.y;
-					chaosWindow->TriggerMouseMoveEvent(mm);
+					fastWindow->TriggerMouseMoveEvent(mm);
 				}
 				break;
 			case ButtonPress:
@@ -144,31 +144,31 @@ namespace Fast
 						{
 							MouseWheelEvent mw;
 							mw.mAction = kMouseWheelActionScrollUp;
-							chaosWindow->TriggerMouseWheelEvent(mw);
+							fastWindow->TriggerMouseWheelEvent(mw);
 						}
 						break;
 					case 5:
 						{
 							MouseWheelEvent mw;
 							mw.mAction = kMouseWheelActionScrollDown;
-							chaosWindow->TriggerMouseWheelEvent(mw);
+							fastWindow->TriggerMouseWheelEvent(mw);
 						}
 						break;
 					case 6:
 						{
 							MouseWheelEvent mw;
 							mw.mAction = kMouseWheelActionScrollLeft;
-							chaosWindow->TriggerMouseWheelEvent(mw);
+							fastWindow->TriggerMouseWheelEvent(mw);
 						}
 					case 7:
 						{
 							MouseWheelEvent mw;
 							mw.mAction = kMouseWheelActionScrollRight;
-							chaosWindow->TriggerMouseWheelEvent(mw);
+							fastWindow->TriggerMouseWheelEvent(mw);
 						}
 					};
 					if (mb.mButton)
-						chaosWindow->TriggerMouseButtonEvent(mb);
+						fastWindow->TriggerMouseButtonEvent(mb);
 				}
 				break;
 			case ButtonRelease:
@@ -189,7 +189,7 @@ namespace Fast
 						break;
 					};
 					if (mb.mButton)
-						chaosWindow->TriggerMouseButtonEvent(mb);
+						fastWindow->TriggerMouseButtonEvent(mb);
 				}
 				break;
 			case KeymapNotify:
@@ -207,13 +207,13 @@ namespace Fast
 					// If no keycode exists, get the key character
 					if (k.mKey.IsEmpty()) {
 						// First check for character input
-						if (chaosWindow->IsInTypingMode()) {
+						if (fastWindow->IsInTypingMode()) {
 							CharacterInputEvent ci;
 							length = XLookupString(&xEvent.xkey, characters,
 								17, (KeySym*)&keysym, 0);
 							if (length > 0 && characters[0] != 0) {
 								ci.mString = characters;
-								chaosWindow->TriggerCharacterInputEvent(ci);
+								fastWindow->TriggerCharacterInputEvent(ci);
 							}
 						}
 						// Now game input, remove modifiers
@@ -226,7 +226,7 @@ namespace Fast
 						k.mKey = characters;
 					}
 					k.mAction = kKeyActionPressed;
-					chaosWindow->TriggerKeyEvent(k);
+					fastWindow->TriggerKeyEvent(k);
 				}
 				break;
 			case KeyRelease:
@@ -264,7 +264,7 @@ namespace Fast
 							k.mKey = characters;
 						}
 						k.mAction = kKeyActionReleased;
-						chaosWindow->TriggerKeyEvent(k);
+						fastWindow->TriggerKeyEvent(k);
 					}
 				}
 				break;
@@ -277,7 +277,7 @@ namespace Fast
 			if (xEvent.xclient.data.l[0] ==
 				(Atom)X11InternAtom(display, "WM_DELETE_WINDOW"))
 			{
-				chaosWindow->TriggerCloseEvent();
+				fastWindow->TriggerCloseEvent();
 			}
 		}
 		// Lastly, handle raw input events (no mask and no window)
@@ -291,7 +291,7 @@ namespace Fast
 						MouseRawMoveEvent mrm;
 						mrm.mMovement = Point((Int)*(xiRawEvent->raw_values),
 							(Int)-(*(xiRawEvent->raw_values+1)));
-						chaosWindow->TriggerMouseRawMoveEvent(mrm);
+						fastWindow->TriggerMouseRawMoveEvent(mrm);
 					}
 					XFreeEventData((::Display*)display, xgec);
 				}

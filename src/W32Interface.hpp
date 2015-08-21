@@ -35,7 +35,7 @@ namespace Fast
 {
 #if defined(FastOSWindows)
 	extern Int						W32FindBestPixelFormat(CHDC deviceContext);
-	extern CHWND					W32CreateWindow(Window *chaosWindow,
+	extern CHWND					W32CreateWindow(Window *fastWindow,
 										const Rectangle &contentRect,
 										WindowStyle style);
 	extern void						W32DestroyWindow(CHWND hwnd);

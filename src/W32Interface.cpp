@@ -155,7 +155,7 @@ namespace Fast
 		return bestDepthID;
 	}
 
-	CHWND W32CreateWindow(Window *chaosWindow,
+	CHWND W32CreateWindow(Window *fastWindow,
 		const Rectangle &contentRect, WindowStyle style)
 	{
 		WNDCLASSEX wcex;
@@ -187,7 +187,7 @@ namespace Fast
 		if (!hWnd)
 			return 0;
 		UpdateWindow(hWnd);
-		SetWindowLongPtr(hWnd, GWL_USERDATA, (LONG)chaosWindow);
+		SetWindowLongPtr(hWnd, GWL_USERDATA, (LONG)fastWindow);
 		// Set up raw mMouse input
 		rid[0].usUsagePage = kFastHidUsagePageGeneric;
 		rid[0].usUsage = kFastHidUsageGenericMouse;

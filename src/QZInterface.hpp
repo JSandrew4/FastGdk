@@ -38,7 +38,7 @@ namespace Fast
 	
 	extern void			QZRegisterDisplayChangeCallback(Display *display);
 	extern void			QZUnregisterDisplayChangeCallback(Display *display);
-	extern UInt			QZGetDisplayID(UInt chaosScreenID);
+	extern UInt			QZGetDisplayID(UInt fastScreenID);
 	extern void			QZGetVideoModes(UInt displayID,
 							Array<VideoMode> *modes);
 	extern void			QZGetCurrentVideoMode(UInt displayID, VideoMode *mode);

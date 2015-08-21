@@ -31,7 +31,7 @@ using namespace Fast;
 
 @implementation FastNSWindow
 
-- (id)initWithFastWindow:(Fast::Window*)chaosWindow
+- (id)initWithFastWindow:(Fast::Window*)fastWindow
 	contentRect:(NSRect)frame
 	styleMask:(NSUInteger)styleMask
 	backing:(NSUInteger)backing
@@ -42,7 +42,7 @@ using namespace Fast;
 		backing:backing
 		defer:defer];
 	if (self) {
-		mFastWindow = chaosWindow;
+		mFastWindow = fastWindow;
 		[self setAcceptsMouseMovedEvents:YES];
 		NSOpenGLPixelFormatAttribute attribs[] = {
 			NSOpenGLPFADoubleBuffer,
