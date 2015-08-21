@@ -1,0 +1,161 @@
+FastGdk C/C++/Obj-C Coding Conventions
+
+---- [General] ----
+
+1. The global namespace must only contain preprocessor directives and the Fast
+namespace.
+
+2. The Fast namespace must only contain enums, constants, classes, structs, and
+further namespaces.
+
+3. Singletons are forbidden.
+
+4. structs must be POD (plain old data); member functions, static members,
+static member functions, inheritance, and non-POD types are forbidden.
+
+---- [Naming] ----
+
+1. Names should be as descriptive as possible. Try to avoid ambiguous acronyms.
+
+2. Names must never begin with an underscore.
+
+3. All names must be written in camel case.
+
+4. In 2-character acronyms, both characters must be the same case.
+Examples: Int textureID, Int idOfTexture
+
+5. In 3-charactor+ acronyms, every character after the first must be lowercase.
+Examples: String someHtml, String htmlFile
+
+6. Types, classes, structs, enums, and namespaces must be formatted as such:
+[CamelCaseName]
+
+7. Member variables must be formatted as such:
+m[CamelCaseName]
+
+8. Member constants must be formatted as such:
+k[CamelCaseName]
+
+9. Functions and member functions must be formatted as such:
+[CamelCaseName]
+
+10. Static member variables must be formatted as such:
+[CamelCaseName]
+
+11. Local variables must be formatted as such:
+[camelCaseName]
+
+---- [Style] ----
+
+1. No line of code shall exceed 80 spaces in length.
+
+2. In pointer variable declarations, there must be a space or tab before the
+asterisk.
+Examples: Char *someText, Void *args
+
+3. In pointer function declarations, there must be a space or tab after the
+asterisk.
+Examples: Void* GetAddress(), Entity* GetEntity()
+
+4. class declarations must be formatted as such:
+class FastApi [name]
+{
+[public/protected/private]:
+	// Members
+};
+NOTE: Implicit accessors are forbidden.
+
+5. template class declarations must be formatted as such:
+template <class type1, class type2, class typeN>
+class FastApi [name]
+{
+[public/protected/private]:
+	// Members	
+};
+NOTE: Implicit accessors are forbidden.
+
+6. struct declarations must be formatted as such:
+struct FastApi [name]
+{
+	// Members	
+};
+
+7. enum declarations must be formatted as such:
+enum FastApi [name]
+{
+	[constant1] = [value],
+	[constant2],
+	[constantN]
+};
+
+8. namespaces must be formatted as such:
+namespace [name]
+{
+	// Code
+}
+
+9. if, else if, and else statements must be formatted as such:
+if ([conditions]) {
+	// Code	
+} else if ([conditions]) {
+	// Code
+} else {
+	// Code
+}
+Or:
+if ([conditions])
+	// Single line
+else if ([conditions])
+	// Single line
+else
+	// Single line
+
+10. switch statements must be formatted as such:
+switch ([x])
+{
+case 1:
+	// Code
+case 2:
+	// Code
+case N:
+	// Code
+}
+
+11. for statements must be formatted as such:
+for ([variables]; [conditions]; [etc]) {
+	// Code
+}
+Or:
+for ([variables]; [conditions]; [etc])
+	// Single line
+
+12. while statements must be formatted as such:
+while ([conditions]) {
+	// Code
+}
+Or:
+while ([conditions])
+	// Single line
+
+13. do while statements must be formatted as such:
+do {
+	// Code
+} while ([conditions]);
+
+14. If a function declaration/definition or conditional statement exceeds 80
+spaces, it must be split into multiple lines, and the opening brace must be on
+its own line.
+Example function:
+void DoSomething([line 1 parameters
+	line 2 parameters])
+{
+	// Code
+}
+Example statement:
+if ([line 1 conditions
+	line 2 conditions])
+{
+	// Code
+}
+NOTE: In the case above, there must be braces even if the code within them is
+only one line.

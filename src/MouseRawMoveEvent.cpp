@@ -1,0 +1,51 @@
+/******************************************************************************/
+/*                                                                            */
+/*  MouseRawMoveEvent.cpp                                                     */
+/*                                                                            */
+/*  Copyright (C) 2015, Joseph Andrew Staedelin IV                            */
+/*                                                                            */
+/*  This file is part of the FastGdk project.                                 */
+/*                                                                            */
+/*  The FastGdk is free software: you can redistribute it and/or modify       */
+/*  it under the terms of the GNU Lesser General Public License as published  */
+/*  by the Free Software Foundation, either version 3 of the License, or      */
+/*  (at your option) any later version.                                       */
+/*                                                                            */
+/*  The FastGdk is distributed in the hope that it will be useful,            */
+/*  but WITHOUT ANY WARRANTY; without even the implied warranty of            */
+/*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             */
+/*  GNU Lesser General Public License for more details.                       */
+/*                                                                            */
+/*  You should have received a copy of the GNU Lesser General Public License  */
+/*  along with the FastGdk.  If not, see <http://www.gnu.org/licenses/>.      */
+/*                                                                            */
+/******************************************************************************/
+
+#include <Fast/MouseRawMoveEvent.hpp>
+#include <Fast/System.hpp>
+
+#include "Undefs.hpp"
+
+namespace Fast
+{
+	MouseRawMoveEvent::MouseRawMoveEvent() {
+		mTimestamp = System::GetTimeAndDate();
+	}
+
+	MouseRawMoveEvent::MouseRawMoveEvent(const Point &movement) {
+		mMovement = movement;
+		mTimestamp = System::GetTimeAndDate();
+	}
+
+	Bool MouseRawMoveEvent::operator==(const MouseRawMoveEvent &that) const {
+		if (this->mMovement != that.mMovement)
+			return false;
+		return true;
+	}
+
+	Bool MouseRawMoveEvent::operator!=(const MouseRawMoveEvent &that) const {
+		if (this->mMovement != that.mMovement)
+			return true;
+		return false;
+	}
+}

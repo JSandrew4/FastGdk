@@ -1,0 +1,90 @@
+#!/bin/bash
+
+function advise {
+	echo $1
+	notify-send "FastGdk" "$1" --hint=string:x-canonical-private-synchronous:true
+}
+
+function build {
+	advise "Building linux-$arch$debug..."
+	rm -f ./lib/libFastGdk-$arch$debug.so
+	g++ $gcc_arch $gcc_debug -fPIC ./src/*.cpp \
+		-shared -o ./lib/libFastGdk-$arch$debug.so -Iinclude \
+		../jpeg/lib/libjpeg-linux-$arch$debug.a \
+		-I../jpeg/src \
+		../png/lib/libpng-linux-$arch$debug.a \
+		-I../zlib/src \
+		-I../png/src \
+		../vorbis/lib/libvorbis-linux-$arch$debug.a \
+		-I../vorbis/src \
+		-I../vorbis/include \
+		../ogg/lib/libogg-linux-$arch$debug.a \
+		-I../ogg/include \
+		../ftgl/lib/libftgl-linux-$arch$debug.a \
+		-I../freetype2/include \
+		-I../ftgl/src \
+		../zip/lib/libzip-linux-$arch$debug.a \
+		-I../zip/src \
+		-lGL -lGLU -lopenal -lX11 -lXi -lXrandr
+	cp ./lib/libFastGdk-$arch$debug.so ~/Lib/libFastGdk-$arch$debug.so
+	chmod 775 ~/Lib/libFastGdk-$arch$debug.so
+	advise "Build finished."
+}
+
+if [ "`uname`" != "Linux" ]
+then
+	advise "Error: Incorrect Operating System."
+	exit
+fi
+
+for ARG in "$@"
+do
+	if [ "$ARG" == "i386" ]
+	then
+		arch="i386"
+		gcc_arch="-m32"
+	elif [ "$ARG" == "amd64" ]
+	then
+		arch="amd64"
+		gcc_arch="-m64"
+	elif [ "$ARG" == "debug" ]
+	then
+		debug="-debug"
+		gcc_debug="-g"
+	elif [ "$ARG" == "all" ]
+	then
+		# Build i386
+		arch="i386"
+		gcc_arch="-m32"
+		debug=""
+		gcc_debug=""
+		build
+		# Build i386-debug
+		arch="i386"
+		gcc_arch="-m32"
+		debug="-debug"
+		gcc_debug="-g"
+		build
+		# Build amd64
+		arch="amd64"
+		gcc_arch="-m64"
+		debug=""
+		gcc_debug=""
+		build
+		# Build amd64-debug
+		arch="amd64"
+		gcc_arch="-m64"
+		debug="-debug"
+		gcc_debug="-g"
+		build
+		# Done
+		exit
+	fi
+done
+if [ "$arch" == "" ]
+then
+	advise "Error: No architecture specified."
+	exit
+fi
+
+build

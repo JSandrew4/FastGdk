@@ -1,0 +1,59 @@
+#!/bin/bash
+
+function build {
+	echo "Building macosx-universal$debug..."
+	rm -f ./lib/libFastGdk$debug.dylib
+	clang++ -fPIC -arch i386 -arch x86_64 ./src/*.cpp ./src/*.mm \
+		-dynamiclib -o ./lib/libFastGdk$debug.dylib -Iinclude \
+		../jpeg/lib/libjpeg-macosx$debug.a \
+		-I../jpeg/src \
+		../png/lib/libpng-macosx$debug.a \
+		-I../zlib/src \
+		-I../png/src \
+		../vorbis/lib/libvorbis-macosx$debug.a \
+		-I../vorbis/src \
+		-I../vorbis/include \
+		../ogg/lib/libogg-macosx$debug.a \
+		-I../ogg/include \
+		../ftgl/lib/libftgl-macosx$debug.a \
+		-I../freetype2/include \
+		-I../ftgl/src \
+		../zip/lib/libzip-macosx$debug.a \
+		-I../zip/src \
+		-framework Cocoa -framework OpenGL -framework OpenAL \
+		-framework IOKit -framework Carbon -liconv \
+		-headerpad_max_install_names \
+		-install_name @executable_path/libFastGdk$debug.dylib
+	echo "Done."
+}
+
+if [ "`uname`" != "Darwin" ]
+then
+	echo "Error: Incorrect Operating System."
+	exit
+fi
+
+for ARG in "$@"
+do
+	if [ "$ARG" == "debug" ]
+	then
+		debug="-debug"
+		c_debug="-g"
+		build
+	elif [ "$ARG" == "all" ]
+	then
+		# Build universal
+		debug=""
+		c_debug=""
+		build
+		# Build universal-debug
+		debug="-debug"
+		c_debug="-g"
+		build
+	fi
+	exit
+done
+
+debug=""
+c_debug=""
+build

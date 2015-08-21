@@ -1,0 +1,254 @@
+FastGdk File/Format Specifications
+
+/***************************************************************************\
+*	Fast Sprite Sheet v0.1 Specification									*
+*	MagicNumber:				0x43 0x53 0x50 0x53 ("FSPS")				*
+*	FileExtension:				.sps										*
+*	FileExtensionPronunciation:	Spaz										*
+\***************************************************************************/
+
+FastSpriteSheet_0_1
+{
+	SpsString
+	{
+		Int		mLength;
+		Char	mChars[];
+	};
+
+	SpsSubImage
+	{
+		SpsString	mName;
+		Int			mXOffset;
+		Int			mYOffset;
+		Int			mWidth;
+		Int			mHeight;
+	};
+
+	SpsFile
+	{
+		Char		mMagicNumber[4];
+		Int			mVersionMajor;
+		Int			mVersionMinor;
+		Int			mNumSubImages;
+		SpsSubImage	mSubImages[];
+	};
+}
+
+/***************************************************************************\
+*	Fast Sprite Animation v0.1 Specification								*
+*	MagicNumber:				0x43 0x53 0x50 0x41 ("FSPA")				*
+*	FileExtension:				.spa										*
+*	FileExtensionPronunciation:	Spa											*
+\***************************************************************************/
+
+FastSpriteAnimation_0_1
+{
+	SpaTriangle
+	{
+		Float	mComponentAX;
+		Float	mComponentAY;
+		Float	mComponentBX;
+		Float	mComponentBY;
+		Float	mComponentCX;
+		Float	mComponentCY;
+	};
+
+	SpaCircle
+	{
+		Float	mOriginX;
+		Float	mOriginY;
+		Float	mRadius;
+	};
+
+	SpaString
+	{
+		Int		mLength;
+		Char	mChars[];
+	};
+
+	SpaTexture
+	{
+		SpaString	mName;
+		SpaString	mSpriteSheetName;
+	};
+
+	SpaCollisionModel
+	{
+		SpaString	mName;
+		Int			mNumTriangles;
+		SpaTriangle	mTriangles[];
+		Int			mNumCircles;
+		SpaCircle	mCircles[];
+	};
+	
+	SpaFrameConfig
+	{
+		SpaString	mName;
+		Int			mTextureRefID;
+		Int			mCollisionModelRefID;
+		Float		mXOffset;
+		Float		mYOffset;
+		Float		mXScale;
+		Float		mYScale;
+		Float		mRotationAngle;
+		Bool		mFlipx;
+		Bool		mFlipy:
+	};
+
+	SpaFrame
+	{
+		SpaString	mName;
+		Int			mFrameConfigID;
+		Long		mDelayMS;
+		Int			mInterpType;
+	};
+
+	SpaAction
+	{
+		SpaString	mName;
+		Int			mNumFrames;
+		SpaFrame	mFrames[];
+	};
+
+	SpaFile
+	{
+		Char				mMagicNumber[4];
+		Int					mVersionMajor;
+		Int					mVersionMinor;
+		Int					mNumTextures;
+		SpaTexture			mTextures[];
+		Int					mNumCollisionModels;
+		SpaCollisionModel	mCollisionModels;
+		Int					mNumFrameConfigs;
+		SpaFrameConfig		mFrameConfigs[];
+		Int					mNumActions;
+		SpaAction			mActions[];
+	};
+}
+
+/***************************************************************************\
+*	Fast Sprite Map v0.1 Specification										*
+*	MagicNumber:				0x43 0x53 0x50 0x4d ("FSPM")				*
+*	FileExtension:				.spm										*
+*	FileExtensionPronunciation:	Spam										*
+\***************************************************************************/
+
+FastSpriteMap_0_1
+{
+	SpmString
+	{
+		Int		mLength;
+		Char	mChars[];
+	};
+
+	SpmSpriteTileType
+	{
+		SpmString	mEntityName;
+		SpmString	mSpriteFileName;
+	};
+
+	SpmChunk
+	{
+		Int		mTileOffsetX;
+		Int		mTileOffsetY;
+		Int		mCompressedTilesLength;
+		Short	mCompressedTiles[];
+	};
+
+	SpmLayer
+	{
+		SpmString	mName;
+		Int			mChunkWidth;
+		Int			mChunkHeight;
+		Int			mSpriteRenderLayer;
+		Float		mCameraStartingOriginX;
+		Float		mCameraStartingOriginY;
+		Float		mCameraRotationDegrees;
+		Float		mCameraZoom;
+		Float		mScrollMultiplierX;
+		Float		mScrollMultiplierY;
+		Float		mSpawnBoundsOffsetX;
+		Float		mSpawnBoundsOffsetY;
+		Float		mSpawnBoundsWidth;
+		Float		mSpawnBoundsHeight;
+		Int			mNumChunks;
+		SpmChunk	mChunks[];
+	};
+
+	SpmFile
+	{
+		Char				mMagicNumber[4];
+		Int					mVersionMajor;
+		Int					mVersionMinor;
+		Short				mNumDictionaryEntries;
+		SpmSpriteTileType	mTileTypes[];
+		Int					mNumLayers;
+		SpmLayers			mLayers[];
+	};
+}
+
+/***************************************************************************\
+*	Fast Model Mesh v0.1 Specification										*
+*	MagicNumber:				0x43 0x4d 0x44 0x4d ("FMDM")				*
+*	FileExtension:				.mdm										*
+*	FileExtensionPronunciation:	Madam										*
+\***************************************************************************/
+
+FastModelMesh_0_1
+{
+	MdmString
+	{
+		Int		mLength;
+		Char	mChars[];
+	};
+
+	MdmInfluence
+	{
+		Short	mBoneID;
+		Float	mWeight;
+	};
+
+	MdmVertex
+	{
+		Float			mPosition[3];
+		Float			mNormal[3];
+		Short			mNumInfluences;
+		MdmInfluence	mInfluences[];
+	};
+
+	MdmFace
+	{
+		Int	mIndices[3];
+	};
+
+	MdmMesh
+	{
+		MdmString	mName;
+		Float		mLocalMatrix[16];
+		Int			mNumVertices;
+		MdmVertex	mVertices[];
+		Int			mNumFaces;
+		MdmFace		mFaces[];
+	};
+
+	MdmFile
+	{
+		Char	mMagicNumber[4];
+		Int		mVersionMajor;
+		Int		mVersionMinor;
+		Int		mNumMeshes;
+		Mesh	mMeshes[];
+	};
+}
+
+
+
+
+
+
+
+
+
+
+
+

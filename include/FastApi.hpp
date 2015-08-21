@@ -1,0 +1,170 @@
+/******************************************************************************/
+/*                                                                            */
+/*  FastApi.hpp                                                              */
+/*                                                                            */
+/*  Copyright (C) 2015, Joseph Andrew Staedelin IV                            */
+/*                                                                            */
+/*  This file is part of the FastGdk project.                                 */
+/*                                                                            */
+/*  The FastGdk is free software: you can redistribute it and/or modify       */
+/*  it under the terms of the GNU Lesser General Public License as published  */
+/*  by the Free Software Foundation, either version 3 of the License, or      */
+/*  (at your option) any later version.                                       */
+/*                                                                            */
+/*  The FastGdk is distributed in the hope that it will be useful,            */
+/*  but WITHOUT ANY WARRANTY; without even the implied warranty of            */
+/*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             */
+/*  GNU Lesser General Public License for more details.                       */
+/*                                                                            */
+/*  You should have received a copy of the GNU Lesser General Public License  */
+/*  along with the FastGdk.  If not, see <http://www.gnu.org/licenses/>.      */
+/*                                                                            */
+/******************************************************************************/
+
+#include <Fast/Types.hpp>
+#include <Fast/Alignment.hpp>
+#include <Fast/Application.hpp>
+#include <Fast/Array.hpp>
+#include <Fast/AsciiString.hpp>
+#include <Fast/AssetImplementer.hpp>
+#include <Fast/AssetImplementerBase.hpp>
+#include <Fast/AssetCollection.hpp>
+#include <Fast/AssetCollectionBase.hpp>
+#include <Fast/AssetCollectionVerifiable.hpp>
+#include <Fast/AssetResourceBase.hpp>
+#include <Fast/AudioContext.hpp>
+#include <Fast/AudioListener.hpp>
+#include <Fast/Box2D.hpp>
+#include <Fast/Box3D.hpp>
+#include <Fast/ByteStream.hpp>
+#include <Fast/CharacterInputEvent.hpp>
+#include <Fast/Checksum.hpp>
+#include <Fast/Circle.hpp>
+#include <Fast/Clipboard.hpp>
+#include <Fast/Color.hpp>
+#include <Fast/Conditional.hpp>
+#include <Fast/CustomRenderable2D.hpp>
+#include <Fast/Debug.hpp>
+#include <Fast/Display.hpp>
+#include <Fast/ErrorType.hpp>
+#include <Fast/Error.hpp>
+#include <Fast/ExceptionType.hpp>
+#include <Fast/Exception.hpp>
+#include <Fast/FileBase.hpp>
+#include <Fast/FileReader.hpp>
+#include <Fast/FileStream.hpp>
+#include <Fast/FileSystem.hpp>
+#include <Fast/FileWriter.hpp>
+#include <Fast/Font.hpp>
+#include <Fast/FontCache.hpp>
+#include <Fast/FontCollection.hpp>
+#include <Fast/FontData.hpp>
+#include <Fast/FontProperties.hpp>
+#include <Fast/FontResource.hpp>
+#include <Fast/FontString.hpp>
+#include <Fast/Gamepad.hpp>
+#include <Fast/GamepadButtonAction.hpp>
+#include <Fast/GamepadButtonEvent.hpp>
+#include <Fast/GamepadCapabilities.hpp>
+#include <Fast/GamepadConnectionEvent.hpp>
+#include <Fast/GamepadDeviceInfo.hpp>
+#include <Fast/GamepadStick.hpp>
+#include <Fast/GamepadStickAxis.hpp>
+#include <Fast/GamepadStickAxisEvent.hpp>
+#include <Fast/GraphicsContext.hpp>
+#include <Fast/GraphicsIOCommand.hpp>
+#include <Fast/GraphicsIOType.hpp>
+#include <Fast/GraphicsThread.hpp>
+#include <Fast/GraphicsThreadArgs.hpp>
+#include <Fast/GuiContainer.hpp>
+#include <Fast/GuiContext.hpp>
+#include <Fast/GuiRootContainer.hpp>
+#include <Fast/GuiWidget.hpp>
+#include <Fast/Texture2DData.hpp>
+#include <Fast/Texture2DProperties.hpp>
+#include <Fast/IPAddress.hpp>
+#include <Fast/KeyAction.hpp>
+#include <Fast/Keyboard.hpp>
+#include <Fast/Logger.hpp>
+#include <Fast/LoggerDisplayLevel.hpp>
+#include <Fast/Math.hpp>
+#include <Fast/Matrix.hpp>
+#include <Fast/Model.hpp>
+#include <Fast/Mouse.hpp>
+#include <Fast/MouseButton.hpp>
+#include <Fast/MouseButtonAction.hpp>
+#include <Fast/MouseButtonEvent.hpp>
+#include <Fast/MouseMoveEvent.hpp>
+#include <Fast/MouseRawMoveEvent.hpp>
+#include <Fast/MouseWheelAction.hpp>
+#include <Fast/MouseWheelEvent.hpp>
+#include <Fast/Mutex.hpp>
+#include <Fast/NetworkByteStream.hpp>
+#include <Fast/PhysicsContext.hpp>
+#include <Fast/Point.hpp>
+#include <Fast/Quaternion.hpp>
+#include <Fast/Random.hpp>
+#include <Fast/Rectangle.hpp>
+#include <Fast/Scene.hpp>
+#include <Fast/Monitor.hpp>
+#include <Fast/SimpleApplication.hpp>
+#include <Fast/SimpleWindow.hpp>
+#include <Fast/Socket.hpp>
+#include <Fast/SocketThreadGroup.hpp>
+#include <Fast/SoundBase.hpp>
+#include <Fast/SoundCache.hpp>
+#include <Fast/SoundCapture.hpp>
+#include <Fast/SoundData.hpp>
+#include <Fast/SoundDataBase.hpp>
+#include <Fast/SoundDeviceStream.hpp>
+#include <Fast/SoundFileStream.hpp>
+#include <Fast/SoundFormat.hpp>
+#include <Fast/SoundProperties.hpp>
+#include <Fast/SoundResource.hpp>
+#include <Fast/SoundSource.hpp>
+#include <Fast/SoundStream.hpp>
+#include <Fast/SoundStreamBase.hpp>
+#include <Fast/SoundStreamData.hpp>
+#include <Fast/Sprite.hpp>
+#include <Fast/SpriteAction.hpp>
+#include <Fast/SpriteCache.hpp>
+#include <Fast/SpriteCollection.hpp>
+#include <Fast/SpriteCollisionModel.hpp>
+#include <Fast/SpriteCollisionTriangle.hpp>
+#include <Fast/SpriteData.hpp>
+#include <Fast/SpriteFrame.hpp>
+#include <Fast/SpriteFrameConfig.hpp>
+#include <Fast/SpriteMap.hpp>
+#include <Fast/SpriteMapCamera.hpp>
+#include <Fast/SpriteMapChunk.hpp>
+#include <Fast/SpriteMapLayer.hpp>
+#include <Fast/SpriteMapTileType.hpp>
+#include <Fast/SpriteProperties.hpp>
+#include <Fast/SpriteResource.hpp>
+#include <Fast/SpriteSheet.hpp>
+#include <Fast/StopWatch.hpp>
+#include <Fast/String.hpp>
+#include <Fast/SubTexture2D.hpp>
+#include <Fast/System.hpp>
+#include <Fast/SystemConsole.hpp>
+#include <Fast/TcpClientSocket.hpp>
+#include <Fast/TcpClientConnection.hpp>
+#include <Fast/TcpServerSocket.hpp>
+#include <Fast/Texture2DSurface.hpp>
+#include <Fast/Texture2DCache.hpp>
+#include <Fast/Texture2DResource.hpp>
+#include <Fast/Thread.hpp>
+#include <Fast/Timer.hpp>
+#include <Fast/UdpSocket.hpp>
+#include <Fast/Vector2D.hpp>
+#include <Fast/Vector3D.hpp>
+#include <Fast/Vector4D.hpp>
+#include <Fast/Version.hpp>
+#include <Fast/VideoMode.hpp>
+#include <Fast/Window.hpp>
+#include <Fast/WindowStyle.hpp>
+#include <Fast/WString.hpp>
+#include <Fast/ZipFileBase.hpp>
+#include <Fast/ZipFileReader.hpp>
+#include <Fast/ZipFileStream.hpp>
+#include <Fast/ZipFileWriter.hpp>

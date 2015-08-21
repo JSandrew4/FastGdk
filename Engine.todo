@@ -1,0 +1,30 @@
+Engine To Do
+
+Video:
+	☐	 Implement shaders
+	☐	 Beef up Matrix class
+	☐	 Beef up Quaternion class
+	☐	 Create Model file format
+	☐	 Implement MSAA (dynamic switching without game restart)
+	☐	 Implement other FTFont types (Extrude, Buffer, etc)
+Misc:
+	☐	 ZipFileArchive in memory
+	☐	 Implement Clipboard class
+Scene:
+	☐	 Implement Bullet
+	☐	 Implement Entity system
+Tools:
+	☐	 ModelMeshProperties - CLI wizard that sets render preferences of model meshes
+Platforms:
+	☐	 FreeBsd
+	☐	 Haiku/BeOS
+Research:
+	☐	 Dynamic library loading
+	☐	 Localization (UTF-8 always but not always available?)
+	☐	 ARB_debug_output
+	☐	 EXT_direct_state_access
+	☐	 Multiple fbos
+	☐	 Avoid glGet* whenever possible
+	☐	 Movie player
+	☐	 Audio effects
+Archive:
